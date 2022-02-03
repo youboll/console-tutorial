@@ -1,17 +1,23 @@
 import React from "react";
-
-const commands = {
-  help: "help entry",
-  quit: "quitting"
-};
-
+import mapComands from "./mapComands";
+import commands from "./comands";
+//Now passing command line args
 const UseOnEnter = () => {
   const [consoleOutput, updateConsoleOutput] = React.useState([]);
 
   const onEnter = (value, key) => {
     if (key === "Enter") {
-      const newConsoleLine = commands[value] || "Invalid Command";
-      return updateConsoleOutput(consoleOutput =>
+      let command = value.split(' ')[0]
+      let props = value.split(' ')[1]
+      let newConsoleLine = ""
+      try {
+         newConsoleLine = commands[command](props)
+      } catch (e) {
+         newConsoleLine = "Unknown Command";
+      }
+      let commandsStorage = new mapComands();
+      commandsStorage.setCommand(value)
+      return updateConsoleOutput(consoleOutput => 
         consoleOutput.concat(newConsoleLine)
       );
     }
