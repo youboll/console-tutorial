@@ -4,7 +4,6 @@ import commands from "./comands";
 //Now passing command line args
 const UseOnEnter = () => {
   const [consoleOutput, updateConsoleOutput] = React.useState([]);
-
   const onEnter = (value, key) => {
     if (key === "Enter") {
       let command = value.split(' ')[0]
@@ -15,11 +14,17 @@ const UseOnEnter = () => {
       } catch (e) {
          newConsoleLine = "Unknown Command";
       }
+      console.log(newConsoleLine)
       let commandsStorage = new mapComands();
       commandsStorage.setCommand(value)
-      return updateConsoleOutput(consoleOutput => 
-        consoleOutput.concat(newConsoleLine)
-      );
+      if (newConsoleLine === "cls") {
+        return updateConsoleOutput([]);
+      } else {
+        return updateConsoleOutput(consoleOutput => 
+          consoleOutput.concat(newConsoleLine)
+        );
+      }
+      
     }
   };
 

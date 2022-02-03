@@ -8,17 +8,25 @@ const MapConsoleOutput = ({ consoleOutput }) => {
     if (scrollRef.current)
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
   });
+  if (consoleOutput === "") {
+    return (
+      <div className="console-output">
 
-  return (
-    <div className="console-output" ref={scrollRef}>
-      {consoleOutput.map((item, index) => (
-        <div key={index}>
-          <Prompt />
-          <span>{item}</span>
-        </div>
-      ))}
-    </div>
-  );
+      </div>
+    );
+  } else {
+    return (
+      <div className="console-output" ref={scrollRef}>
+        {consoleOutput.map((item, index) => (
+          <div key={index}>
+            <Prompt />
+            <span>{item}</span>
+          </div>
+        ))}
+      </div>
+    );
+  }
+  
 };
 
 export default MapConsoleOutput;
