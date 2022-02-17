@@ -12,4 +12,7 @@ export default class {
             localStorage.setItem('commands',JSON.stringify(obj))
         }
     }
+    deleteAllCommands() {
+        localStorage.setItem('commands',JSON.stringify({'commands':[]}))
+    }
 }

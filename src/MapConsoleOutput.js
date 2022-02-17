@@ -15,12 +15,13 @@ const MapConsoleOutput = ({ consoleOutput }) => {
       </div>
     );
   } else {
+    console.log(consoleOutput)
     return (
       <div className="console-output" ref={scrollRef}>
-        {consoleOutput.map((item, index) => (
+        {consoleOutput.map((Item, index) => (
           <div key={index}>
             <Prompt />
-            <span>{item}</span>
+            <span>{Item}</span>
           </div>
         ))}
       </div>

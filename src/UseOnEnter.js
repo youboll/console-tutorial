@@ -12,12 +12,13 @@ const UseOnEnter = () => {
       try {
          newConsoleLine = commands[command](props)
       } catch (e) {
-         newConsoleLine = "Unknown Command";
+         newConsoleLine = commands['unknown']();
       }
       console.log(newConsoleLine)
       let commandsStorage = new mapComands();
       commandsStorage.setCommand(value)
       if (newConsoleLine === "cls") {
+        commandsStorage.deleteAllCommands();
         return updateConsoleOutput([]);
       } else {
         return updateConsoleOutput(consoleOutput => 
