@@ -7,7 +7,8 @@ import inverseIndex from './indexOf'
 const Console = (props) => {
   const inputText = React.useRef();
   const [consoleOutput, onEnter] = UseOnEnter();
-  let commandNumber = JSON.parse(localStorage.getItem('commands')).commands.length
+  const commandsMap = new mapComands()
+  let commandNumber = commandsMap.getCommandList().commands.length
   
 
   React.useEffect(() => {
@@ -17,7 +18,7 @@ const Console = (props) => {
 
   const Arrow = (value, key) => {
     let storage = new mapComands();
-    let commands = storage.getCommand().commands;
+    let commands = storage.getCommandList().commands;
 
     if (key === "ArrowUp") {
       if (commands[(commandNumber-1)] !== undefined){
