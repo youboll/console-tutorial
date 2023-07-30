@@ -1,5 +1,5 @@
 import React from "react";
 
-const Prompt = () => <span>Root@Portifolio:~$ </span>;
+const Prompt = () => <span className={"prompt"}>Root@Portifolio:~$ </span>;
 
 export default Prompt;

@@ -1,6 +1,7 @@
 import React from "react";
 import mapComands from "./mapComands";
-import commands from "./comands";
+import {commandParser, convertCommmandToString} from './utils.js'
+
 //Now passing command line args
 const UseOnEnter = () => {
   const [consoleOutput, updateConsoleOutput] = React.useState([]);
@@ -8,23 +9,22 @@ const UseOnEnter = () => {
     if (key === "Enter") {
       let command = value.split(' ')[0]
       let props = value.split(' ')[1]
-      let newConsoleLine = ""
-      try {
-         newConsoleLine = commands[command](props)
-      } catch (e) {
-         newConsoleLine = commands['unknown']();
-      }
-      console.log(newConsoleLine)
+      let newConsoleLine = commandParser(command, props)
+      let commandString = convertCommmandToString(command, props)
+
       let commandsStorage = new mapComands();
-      commandsStorage.setCommand(value)
-      if (newConsoleLine === "cls") {
-        commandsStorage.deleteAllCommands();
-        return updateConsoleOutput([]);
-      } else {
-        return updateConsoleOutput(consoleOutput => 
-          consoleOutput.concat(newConsoleLine)
+      commandsStorage.setCommand(commandString);
+      let cleanScreen = commandsStorage.checkIfScreenNeedsToBeCleaned(commandString);
+
+      if (cleanScreen) {
+        return updateConsoleOutput(consoleOutput =>
+          []
         );
       }
+
+      return updateConsoleOutput(consoleOutput =>
+          consoleOutput.concat(newConsoleLine)
+        );
       
     }
   };

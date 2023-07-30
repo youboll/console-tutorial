@@ -1,6 +1,9 @@
 import React from 'react'
+
 export default () => {
-    return(<span>
-        Unknown Command
-    </span>)
+    return {
+        'react_obj': <span style={{color:"red"}}>
+                Unknown Command
+            </span>
+    }
 }
