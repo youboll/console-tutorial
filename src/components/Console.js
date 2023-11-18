@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Prompt from "../Prompt";
 import UseOnEnter from "../UseOnEnter";
 import MapConsoleOutput from "../MapConsoleOutput";
@@ -29,7 +29,7 @@ const Console = (props) => {
         inputText.current.value = commands[(commandNumber +1)];
         commandNumber++;
       }
-    } else if (value == ""){
+    } else if (value === ""){
       commandNumber = commandsMap.getCommandList().commands.length
     }
   };

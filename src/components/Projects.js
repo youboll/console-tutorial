@@ -1,37 +1,47 @@
+import styled from "styled-components";
 import React, {useState} from 'react'
 import {projects} from '../comands/projects.json'
 import WinBox from "react-winbox";
-
 import '../assets/modern.min.css'
 import '../assets/white.min.css'
 import '../assets/winbox.min.css'
+import CustomWinBox from "./CustomWinBox";
 
-let winBoxControlInfo = {
-  class: 'wb-gh',
-  image: `https://github.githubassets.com/favicons/favicon-dark.svg`, // TODO Download and reduce the favicon icon
-  click: () => {
-    window.open('https://github.com/rickonono3/react-winbox', '_blank');
-  },
-}
+
+const ProjectButton = styled.button`
+  background-color: #1b5abf;
+  border: 1px solid #0d2750;
+  margin-right: 1em;
+  margin-bottom: .2em;
+`
 
 export default () => {
     let [open1, setOpen1] = useState(false);
+    let [open2, setOpen2] = useState(false);
+
 
     return <div>
-        { open1 && (<WinBox
-            title={projects[0].title}
-            className={'modern'}
-            background={"rgba(94,169,92,0.92)"}
-            customControls={[winBoxControlInfo]}
-            width={"588px"}
-            height={"608px"}
-            onClose={() => {setOpen1(false)}}
-        ><iframe src={"https://utlrgune52zwjhixuxttfbj6f40xiuzk.lambda-url.us-east-2.on.aws/?target_url=https://github.com/youboll/pharmalivery-website-nodejs"} sandbox></iframe></WinBox>)}
-        <ul>
-            <li>
-                <button onClick={() => {setOpen1(true)}}>Pharmalivery {open1}</button>
-            </li>
-        </ul>
+        {open1 && (<CustomWinBox
+            url={"https://github.com/youboll/pharmalivery-website-nodejs"}
+            onClose={setOpen1}
+        ></CustomWinBox>)}
+
+        <ProjectButton onClick={() => {
+            setOpen1(true)
+        }}>Pharmalivery</ProjectButton>
+
+        {open2 && (
+            <CustomWinBox
+                url={"https://github.com/youboll/shitfinderReactApp"}
+                onClose={setOpen2}
+            >
+
+            </CustomWinBox>
+        )}
+
+        <ProjectButton onClick={() => {
+            setOpen2(true)
+        }}>ShitFinder</ProjectButton>
     </div>
 
 }

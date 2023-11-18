@@ -16,6 +16,7 @@ export default class {
 
     setCommand(item) {
         if (localStorage.getItem('commands') === null) {
+
             localStorage.setItem('commands', JSON.stringify({commands: [item]}))
         } else {
             let obj = this.getCommandList();

@@ -3,6 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import dotEnv from "dotenv";
+import dotenvExpand from "dotenv-expand";
+import "fs"
+
+let myEnv = dotEnv.config()
+console.log(myEnv)
+dotenvExpand.expand(myEnv)
+
+console.log(process.env)
 
 ReactDOM.render(
   <React.StrictMode>
